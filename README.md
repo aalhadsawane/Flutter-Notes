@@ -54,13 +54,16 @@ The mainAxisSize property determines how much space a Row and Column can occupy 
 2)```MainAxisSize.min``` Row and Column only occupy enough space on their main axes for their children.
 
 ###### MainAxisAlignment
-When mainAxisSize is set to MainAxisSize.max, Row and Column might lay out their children with extra space. The mainAxisAlignment property determines how Row and Column can position their children in that extra space. mainAxisAlignment's enum:
-1)MainAxisAlignment.start
-2)MainAxisAlignment.end
-3)MainAxisAlignment.center
-4)MainAxisAlignment.spaceBetween (Divides the extra space evenly between children)
-5)MainAxisAlignment.spaceEvenly  (Divides the extra space evenly between children and before and after the children.)
-6)MainAxisAlignment.spaceAround  (Similar to MainAxisAlignment.spaceEvenly, but reduces half of the space before the first child and after the last child to half of the width between the children.)
+When mainAxisSize is set to MainAxisSize.max, Row and Column might lay out their children with extra space. The mainAxisAlignment property determines how Row and Column can position their children in that extra space.  mainAxisAlignment's enum:  
+###### 1) ```MainAxisAlignment.start```  
+###### 2) ```MainAxisAlignment.end```  
+###### 3) ```MainAxisAlignment.center```  
+###### 4) ```MainAxisAlignment.spaceBetween```
+  (Divides the extra space evenly between children)  
+###### 5) ```MainAxisAlignment.spaceEvenly```
+   (Divides the extra space evenly between children and before and after the children.)  
+###### 6) ```MainAxisAlignment.spaceAround```
+  (Similar to MainAxisAlignment.spaceEvenly, but reduces half of the space before the first child and after the last child to half of the width between the children.)
 ### Padding Widget
 There is actually no difference betwween adding this widget or adding a Container and setting its padding property to something but for clean code use this.
 ```

@@ -192,3 +192,29 @@ Stack(
   ],
 )
 ```
+
+### CustomScrollView 
+A CustomScrollView lets you supply slivers directly to create various scrolling effects, such as lists, grids, expanding headers and sliver app bars. You will have to read the [docs for sliver app bar](https://api.flutter.dev/flutter/material/SliverAppBar-class.html) and you could also lay hands on [docs for sliver list and grids](https://api.flutter.dev/flutter/widgets/SliverList-class.html) if you are deep diving into slivers.
+```
+CustomScrollView(
+  slivers: <Widgets>[    /*Slivers property is just like children but it ensures dart that all the children are slivers*/
+    SliverAppBar(         //Works just like AppBar
+      title : Text('Sliver App Bar'),
+      _anotherSliver,
+      _mayberOneMoreSliver,
+    )
+  ]
+)
+```
+### MediaQuery
+This gives you information about user layout preferences like window size, orientation, font sizes, system UI padding, etc.
+```
+build(BuildContext context){
+  var screenSize = MediaQuery.of(context).size;
+  if(screenSize.width > _oneColLayoutWidth){
+    //make two column layout
+  }else{
+    //make single column layout
+  }
+}
+```

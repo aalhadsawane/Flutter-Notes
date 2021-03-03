@@ -1,5 +1,7 @@
+# Frequently Used Widgets In Flutter
+
 ### SizedBox Widget
--A box with a specified size. (specified in pixels).
+A box with a specified size. (specified in pixels).
 Even if the SizedBox widget has no children it will take up whitespace with given dimensions.
 ```
 SizedBox(
@@ -94,7 +96,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         setState(() {
           selected = !selected;
@@ -118,5 +120,75 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 ```
 ```width: selected ? 200.0 : 100.0``` is short hand for if selected = true, width: 200.0 else width: 100.0
 Also you can see the result of the AnimatedContainer code block [here](https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html#widgets.AnimatedContainer.1)
-###### GestureDetector widget
-This widget detects gestures and has enum of gestures like onTap, onLongPress, onDoubleTap etc. Set a setState function to them to see the change upon gesture. This widget is also used in the above example of animated container.
+###### InkWell widget
+This widget detects gestures and has enum of gestures like onTap, onLongPress, onDoubleTap etc. Set a setState function to them to see the change upon gesture. This widget is also used in the above example of animated container. This widget also adds a ripple effect to its child (i.e. we get a splashColor on child)If there is no child, the InkWell widget simply functions on it's parent. For more gestures like dragging you can use ```GestureDetector``` widget.
+
+### BoxDecoration
+The BoxDecoration class provides a variety of ways to draw a box.
+The box has a border, a body, may cast a boxShadow and if it's a rectangle, may have borderRadius property. 
+The body of the box is painted in layers. The bottom-most layer is the color, which fills the box. Above that is the gradient, which also fills the box. 
+Finally there is the image, the precise alignment of which is controlled by the ```DecorationImage```  widget (which has the "image" property).
+BoxDecoration is a widget in decoration property of a Container or a DecoratedBox. Both are essentially same but DecorationBox is efficient when using primarily for decoration and is considered clean code.
+```
+DecoratedBox(
+  decoration: BoxDecoration(
+    color: const Color(0xff7c94b6),
+    image: const DecorationImage(
+      image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg'),
+      fit: BoxFit.cover,
+    ),
+    border: Border.all(
+      color: Colors.black,
+      width: 8,
+    ),
+    borderRadius: BorderRadius.circular(12),
+  ),
+)
+```
+
+### ListView
+A scrollable list of widgets arranged linearly. It has a very important property- ```scrollDirection```.
+```
+ListView(
+  padding: const EdgeInsets.all(8),
+  scrollDirection: Axis.horizontal,
+  children: <Widget>[BlueBox(), BlueBox(), BlueBox()],
+)
+```
+### ListView.builder
+This constructor is appropriate for list views with a large (or infinite) number of children because the builder is called only for those children that are scrolled onto the screen and are actually visible.This process is also called "lazily rendering widgets".
+###### ListView.seperated
+This widget gives more acces to divider between the list items when number of list items is known.
+### PageView and PageController widget
+You can use a PageController to control which page is visible in the view. These widgets control how to swipe onto the next screens. These 2 widgets are best explained [here](https://api.flutter.dev/flutter/widgets/PageView-class.html).
+### Stack
+The widget for creating overlapping children widgets. Stack takes a list of widgets (children) and stacks them ground up (meaning that the first widget in children will be at bottom in the stack). Each child can be either ```Positioned``` or non-positioned. Positioned children are those wrapped in a Positioned widget that has at least one non-null property. This means, the children of Positioned widget (which will be a child of Stack) will be positioned. Others, which are not the children of a positioned widget or directly a positioned widget will be a non-positioned widget. 
+The stack sizes itself to contain all the non-positioned children, which are positioned according to alignment property of Stack.
+Stack has a property ```fit``` which is defaulted to ```fit: StackFit.loose```, you can also make the stack expand to fill its parent by ```fit: StackFit.expand```. It also has a property named ```overflow``` which can be set to either allow overflow by ```overflow: Overflow.visible``` or hide the the overflow by ```overflow: Overflow.clip```.
+Note that positioned widget's position is relative to stack's edges.
+```
+Stack(
+  children: <Widget>[
+    fit: StackFit.loose, //This is default fit
+    alignment: AlignmentDirectional.topStart //This is default alignment
+    overflow: Overflow.clip,
+    Positional(
+      bottom: 50, //50 pixels from bottom
+      right: 50, //50 pixels from right
+      width: 60,
+      height: 60,
+      color: Colors.red,
+    ),
+    Container( //non-positioned and its position and fit will be controlled by stack
+      width: 100,
+      height: 100,
+      color: Colors.green,
+    ),
+    Container( //non-positioned and its position and fit will be controlled by stack
+      width: 90,
+      height: 90,
+      color: Colors.blue,
+    ),
+  ],
+)
+```
